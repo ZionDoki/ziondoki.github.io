@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import FilterToolbar from '../../components/FilterToolbar.astro';
+import PostCard from '../../components/PostCard.astro';
+import { siteMeta } from '../../data/site';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const tags = [...new Set(posts.flatMap((entry) => entry.data.tags))].sort();
+---
+
+<BaseLayout title={`Writing | ${siteMeta.name}`} description="Research notes and essays.">
+	<section class="reveal pb-10 pt-6 md:pb-12 md:pt-8">
+		<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">Archive</p>
+		<h1 class="mt-4 text-[3.2rem] leading-[1.02] md:text-[4.6rem]">Writing / Notes</h1>
+		<p class="mt-5 max-w-3xl text-[15px] leading-8 text-[var(--text-muted)]">
+			Essays and implementation notes that sit between lab notebook, design memo, and public reflection.
+		</p>
+	</section>
+
+	<section>
+		{
+			posts.length > 0 ? (
+				<>
+					<FilterToolbar group="writing" title="Filter by topic" tags={tags} />
+					<div class="dim-list">
+						{
+							posts.map((entry) => (
+								<div data-filter-item="writing" data-tags={entry.data.tags.join('|')}>
+									<PostCard entry={entry} />
+								</div>
+							))
+						}
+					</div>
+				</>
+			) : (
+				<div class="reveal border-t border-b border-[var(--border-fine)] py-8 text-[15px] leading-8 text-[var(--text-muted)]">
+					No writing has been published yet.
+				</div>
+			)
+		}
+	</section>
+</BaseLayout>

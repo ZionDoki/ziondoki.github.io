@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const publications = await getCollection('publications');
+	return publications.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<BaseLayout title={`${data.title} | Publications`} description={data.abstract}>
+	<article class="pb-12">
+		<a class="link-underline reveal font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]" href="/publications/">
+			← Back to publications
+		</a>
+		<header class="reveal mt-6 max-w-4xl pb-2">
+			<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">{data.venue} // {data.year}</p>
+			<h1 class="mt-4 text-[3.1rem] leading-[1.03] md:text-[4.5rem]">{data.title}</h1>
+			<p class="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
+				{data.authors.join(' // ')}
+			</p>
+			<p class="mt-6 max-w-3xl text-base leading-8 text-[var(--text-muted)]">{data.abstract}</p>
+			<div class="mt-8 flex flex-wrap gap-x-5 gap-y-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
+				{data.links.paper && (
+					<a class="link-underline" href={data.links.paper} target="_blank" rel="noreferrer">
+						Paper
+					</a>
+				)}
+				{data.links.code && (
+					<a class="link-underline" href={data.links.code} target="_blank" rel="noreferrer">
+						Code
+					</a>
+				)}
+				{data.links.project && (
+					<a class="link-underline" href={data.links.project} target="_blank" rel="noreferrer">
+						Project page
+					</a>
+				)}
+			</div>
+		</header>
+
+		<div class="mt-16 grid gap-14 md:grid-cols-12">
+			<div class="prose-academic reveal md:col-span-8">
+				<Content />
+			</div>
+			<aside class="reveal border-t border-[var(--border-fine)] pt-6 md:col-span-4 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+				<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Citation</p>
+				<pre class="article-code mt-5 whitespace-pre-wrap"><code>{data.citation}</code></pre>
+				<a class="link-underline mt-6 inline-flex font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]" href="/publications.bib">
+					All publications.bib ↗
+				</a>
+			</aside>
+		</div>
+	</article>
+</BaseLayout>

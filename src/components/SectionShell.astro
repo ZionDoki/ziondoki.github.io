@@ -1,0 +1,24 @@
+---
+interface Props {
+	id?: string;
+	kicker: string;
+	title: string;
+	intro?: string;
+}
+
+const { id, kicker, title, intro } = Astro.props;
+---
+
+<section id={id} data-section class="py-16 md:py-20">
+	<div class="mb-10 border-b border-[var(--border-fine)] pb-6 md:mb-12 md:flex md:items-end md:justify-between md:gap-8">
+		<div class="max-w-4xl reveal">
+			<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">{kicker}</p>
+			<h2 class="mt-4 max-w-4xl text-[2.3rem] leading-[1.06] md:text-[3rem]">{title}</h2>
+			{intro && <p class="mt-4 max-w-2xl text-[15px] leading-8 text-[var(--text-muted)]">{intro}</p>}
+		</div>
+		<div class="reveal mt-5 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)] md:mt-0">
+			<slot name="actions" />
+		</div>
+	</div>
+	<slot />
+</section>

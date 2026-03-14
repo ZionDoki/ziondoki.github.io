@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+	:root {
+		--bg-paper: #f9f9f8;
+		--text-ink: #111111;
+		--text-muted: #6b6b6b;
+		--border-fine: rgba(0, 0, 0, 0.08);
+		--font-serif: 'Newsreader', serif;
+		--font-sans: 'Inter', sans-serif;
+		--font-mono: 'JetBrains Mono', monospace;
+		--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		background: var(--bg-paper);
+		color: var(--text-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	body {
+		margin: 0;
+		min-height: 100vh;
+		background: var(--bg-paper);
+		color: var(--text-ink);
+	}
+
+	::selection {
+		background: var(--text-ink);
+		color: var(--bg-paper);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	img {
+		display: block;
+		max-width: 100%;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		font: inherit;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-serif);
+		font-weight: 400;
+		letter-spacing: -0.01em;
+	}
+}
+
+@layer utilities {
+	.reveal {
+		opacity: 0;
+		transform: translateY(24px);
+		transition:
+			opacity 1.2s var(--ease-out-expo),
+			transform 1.2s var(--ease-out-expo);
+		will-change: transform, opacity;
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.link-underline {
+		position: relative;
+		display: inline-flex;
+		text-decoration: none;
+	}
+
+	.link-underline::after {
+		content: '';
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		transform: scaleX(0);
+		transform-origin: bottom right;
+		background: currentColor;
+		transition: transform 0.6s var(--ease-out-expo);
+	}
+
+	.link-underline:hover::after,
+	.link-underline.is-current::after,
+	.filter-chip[aria-pressed='true']::after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
+	}
+
+	.site-nav-link {
+		position: relative;
+		color: var(--text-muted);
+		transition: color 0.6s var(--ease-out-expo);
+	}
+
+	.site-nav-link:hover,
+	.site-nav-link.is-current {
+		color: var(--text-ink);
+	}
+
+	.filter-chip {
+		position: relative;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		color: var(--text-muted);
+		transition: color 0.6s var(--ease-out-expo);
+	}
+
+	.filter-chip::after {
+		content: '';
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		height: 1px;
+		width: 100%;
+		transform: scaleX(0);
+		transform-origin: bottom right;
+		background: currentColor;
+		transition: transform 0.6s var(--ease-out-expo);
+	}
+
+	.filter-chip:hover,
+	.filter-chip[aria-pressed='true'] {
+		color: var(--text-ink);
+	}
+
+	.dim-list > * {
+		transition:
+			opacity 0.9s var(--ease-out-expo),
+			transform 0.9s var(--ease-out-expo);
+	}
+
+	.dim-list:hover > * {
+		opacity: 0.22;
+	}
+
+	.dim-list:hover > *:hover {
+		opacity: 1;
+	}
+
+	.prose-academic {
+		font-size: 1.06rem;
+		line-height: 1.95;
+		color: var(--text-ink);
+	}
+
+	.prose-academic h2,
+	.prose-academic h3 {
+		margin-top: 2.75rem;
+		font-size: clamp(1.9rem, 3vw, 2.4rem);
+		line-height: 1.12;
+		letter-spacing: -0.02em;
+	}
+
+	.prose-academic p,
+	.prose-academic li {
+		color: var(--text-ink);
+	}
+
+	.prose-academic ul,
+	.prose-academic ol {
+		padding-left: 1.25rem;
+	}
+
+	.prose-academic code,
+	.prose-academic pre {
+		font-family: var(--font-mono);
+	}
+
+	.article-code {
+		overflow-x: auto;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		line-height: 1.8;
+		color: var(--text-muted);
+	}
+
+	.header-scrolled {
+		background: color-mix(in srgb, var(--bg-paper) 96%, transparent);
+		border-bottom: 1px solid var(--border-fine);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.dim-list > * {
+		transition: none;
+	}
+}

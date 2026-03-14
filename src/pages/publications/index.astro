@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import FilterToolbar from '../../components/FilterToolbar.astro';
+import PublicationCard from '../../components/PublicationCard.astro';
+import { siteMeta } from '../../data/site';
+
+const publications = (await getCollection('publications')).sort((a, b) => {
+	const aYear = typeof a.data.year === 'number' ? a.data.year : 9999;
+	const bYear = typeof b.data.year === 'number' ? b.data.year : 9999;
+	return bYear - aYear;
+});
+const tags = [...new Set(publications.flatMap((entry) => entry.data.tags))].sort();
+---
+
+<BaseLayout title={`Publications | ${siteMeta.name}`} description="Selected and archived publications.">
+	<section class="reveal pb-10 pt-6 md:pb-12 md:pt-8">
+		<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">Archive</p>
+		<h1 class="mt-4 text-[3.2rem] leading-[1.02] md:text-[4.6rem]">Publications</h1>
+		<p class="mt-5 max-w-3xl text-[15px] leading-8 text-[var(--text-muted)]">
+			A curated publication index with MDX detail pages for abstracts, notes, links, and citation-ready metadata.
+		</p>
+		<a class="link-underline mt-6 inline-flex font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]" href="/publications.bib">
+			Download publications.bib ↗
+		</a>
+	</section>
+
+	<section>
+		<FilterToolbar group="publications" title="Filter by topic" tags={tags} />
+		<div class="dim-list">
+			{
+				publications.map((entry) => (
+					<div data-filter-item="publications" data-tags={entry.data.tags.join('|')}>
+						<PublicationCard entry={entry} />
+					</div>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>

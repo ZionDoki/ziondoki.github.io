@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import FilterToolbar from '../../components/FilterToolbar.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { siteMeta } from '../../data/site';
+
+const projects = await getCollection('projects');
+const tags = [...new Set(projects.flatMap((entry) => entry.data.tags))].sort();
+---
+
+<BaseLayout title={`Projects | ${siteMeta.name}`} description="Open-source projects and research tools.">
+	<section class="reveal pb-10 pt-6 md:pb-12 md:pt-8">
+		<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">Archive</p>
+		<h1 class="mt-4 text-[3.2rem] leading-[1.02] md:text-[4.6rem]">Open Source Projects</h1>
+		<p class="mt-5 max-w-3xl text-[15px] leading-8 text-[var(--text-muted)]">
+			Each project page combines implementation notes, intended use, and a clear status signal so the archive stays useful over time.
+		</p>
+	</section>
+
+	<section>
+		<FilterToolbar group="projects" title="Filter by topic" tags={tags} />
+		<div class="dim-list">
+			{
+				projects.map((entry) => (
+					<div data-filter-item="projects" data-tags={entry.data.tags.join('|')}>
+						<ProjectCard entry={entry} />
+					</div>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>
