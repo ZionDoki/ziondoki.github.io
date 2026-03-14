@@ -5,15 +5,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--border-fine)]">
-	<div class="mx-auto grid w-full max-w-[980px] gap-8 px-6 py-10 sm:px-8 md:grid-cols-[minmax(0,1fr)_auto]">
-		<div>
-			<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
-				Static by design
-			</p>
-			<p class="mt-4 max-w-2xl text-sm leading-7 text-[var(--text-muted)]">
-				A restrained academic homepage for publications, open-source work, brief notes, and selected external signals.
-			</p>
-		</div>
+	<div class="mx-auto w-full max-w-[980px] px-6 py-10 sm:px-8">
 		<div class="flex flex-wrap items-start gap-x-5 gap-y-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
 			<a class="link-underline hover:text-[var(--text-ink)]" href={`mailto:${siteMeta.email}`}>Email</a>
 			<a class="link-underline hover:text-[var(--text-ink)]" href={siteMeta.cvHref}>CV</a>
