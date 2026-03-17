@@ -4,7 +4,7 @@ export const siteMeta = {
 	description:
 		'Academic homepage for Ziang Liu, focusing on open-source license compliance, software supply chain security, vulnerability detection, and trustworthy software engineering.',
 	email: 'zique@foxmail.com',
-	phone: '+86-157-3097-1850',
+	phone: '/',
 	location: 'Lanzhou, China',
 	affiliation: 'Lanzhou University',
 	repository: 'https://github.com/ZionDoki/',
