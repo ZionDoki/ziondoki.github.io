@@ -12,8 +12,8 @@ export const siteMeta = {
 };
 
 export const homeIntro = [
-	'My research interests include open-source license compliance, software supply chain security, program analysis, vulnerability detection, IoT security, and trustworthy software engineering.',
-	'Current work focuses on license compatibility analysis and trustworthy mixed-source software component analysis, with both academic publications and industry-oriented technology transfer.',
+	'Research focus: open-source license compliance, software supply chain security, program analysis, vulnerability detection, IoT security, and trustworthy software engineering.',
+	'Current work centers on license compatibility and mixed-source component analysis, with publications and industry-oriented technology transfer.',
 ];
 
 export const cvSummary = {

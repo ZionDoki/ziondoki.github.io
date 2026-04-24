@@ -26,48 +26,43 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 ---
 
 <BaseLayout isHome title={`${siteMeta.name} | ${siteMeta.title}`} description={siteMeta.description}>
-	<section id="about" data-section class="pb-14 pt-6 md:pb-16 md:pt-8">
-		<div class="reveal border-b border-[var(--border-fine)] pb-10 md:pb-12">
-			<p class="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--text-muted)]">
+	<section id="about" data-section class="pb-10 pt-3 md:pb-12 md:pt-5">
+		<div class="reveal border-b border-[var(--border-fine)] pb-8 md:pb-9">
+			<p class="font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--text-muted)]">
 				Academic Homepage
 			</p>
-			<div class="mt-6 grid gap-10 md:grid-cols-[minmax(0,1.35fr)_minmax(240px,0.8fr)] md:items-start">
+			<div class="mt-5 grid gap-8 md:grid-cols-[minmax(0,1.28fr)_minmax(260px,0.72fr)] md:items-start">
 				<div>
-					<h1 class="text-[3.25rem] leading-[0.96] md:text-[4.5rem]">{siteMeta.name}</h1>
-					<p class="mt-4 max-w-2xl text-xl leading-9 text-[var(--text-muted)] md:text-[1.4rem]">
+					<h1 class="text-[3rem] leading-[0.98] md:text-[4rem]">{siteMeta.name}</h1>
+					<p class="mt-3 max-w-2xl text-[1.08rem] leading-7 text-[var(--text-muted)] md:text-[1.22rem]">
 						{siteMeta.title}
 					</p>
-					<p class="mt-5 max-w-2xl font-serif text-[1.05rem] leading-8 italic text-[color:rgba(17,17,17,0.72)] md:text-[1.15rem]">
+					<p class="mt-4 max-w-2xl font-serif text-base leading-7 italic text-[color:rgba(17,17,17,0.72)]">
 						The superior man acts with resolve and nurtures virtue.
 					</p>
-					<div class="mt-8 max-w-2xl space-y-5">
-						<p class="text-base leading-8 text-[var(--text-ink)]">
-							I work on open-source license compatibility, software supply chain security, vulnerability
-							detection, IoT security, and trustworthy software engineering.
-						</p>
-						{homeIntro.map((paragraph) => <p class="text-[15px] leading-8 text-[var(--text-muted)]">{paragraph}</p>)}
+					<div class="mt-6 grid max-w-3xl gap-3">
+						{homeIntro.map((paragraph) => <p class="text-[15px] leading-7 text-[var(--text-muted)]">{paragraph}</p>)}
 					</div>
 				</div>
 
-				<div class="space-y-6 md:pt-1">
-					<div>
-						<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Affiliation</p>
-						<p class="mt-2 text-[15px] leading-8">{siteMeta.affiliation}</p>
+				<div class="border-t border-[var(--border-fine)] md:pt-0">
+					<div class="grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-[var(--border-fine)] py-3.5">
+						<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Affiliation</p>
+						<p class="text-sm leading-6">{siteMeta.affiliation}</p>
 					</div>
-					<div>
-						<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Location</p>
-						<p class="mt-2 text-[15px] leading-8">{siteMeta.location}</p>
+					<div class="grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-[var(--border-fine)] py-3.5">
+						<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Location</p>
+						<p class="text-sm leading-6">{siteMeta.location}</p>
 					</div>
-					<div>
-						<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Contact</p>
-						<p class="mt-2 text-[15px] leading-8">
+					<div class="grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-[var(--border-fine)] py-3.5">
+						<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Contact</p>
+						<p class="text-sm leading-6">
 							<a class="link-underline" href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a>
 						</p>
-						<p class="mt-1 text-[15px] leading-8 text-[var(--text-muted)]">{siteMeta.phone}</p>
 					</div>
-					<div>
-						<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Links</p>
-						<div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
+					<div class="grid grid-cols-[108px_minmax(0,1fr)] gap-4 border-b border-[var(--border-fine)] py-3.5">
+						<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Links</p>
+						<div class="flex flex-wrap gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
 							<a class="link-underline hover:text-[var(--text-ink)]" href={siteMeta.cvHref}>CV</a>
 							<a class="link-underline hover:text-[var(--text-ink)]" href={siteMeta.repository} target="_blank" rel="noreferrer">Repository</a>
 						</div>
@@ -84,7 +79,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 		intro="Representative work on open-source license compatibility, software supply chain security, and trustworthy analysis."
 	>
 		<Fragment slot="actions">
-			<a href="/publications/" class="link-underline">View Index ↗</a>
+			<a href="/publications/" class="link-underline">View Index &rarr;</a>
 		</Fragment>
 		<div class="dim-list">
 			{publications.map((entry) => <PublicationCard entry={entry} compact />)}
@@ -98,7 +93,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 		intro="Selected research and engineering efforts spanning industrial collaboration, national projects, and open-source systems."
 	>
 		<Fragment slot="actions">
-			<a href="/projects/" class="link-underline">View Projects ↗</a>
+			<a href="/projects/" class="link-underline">View Projects &rarr;</a>
 		</Fragment>
 		<div class="dim-list">
 			{projects.map((entry) => <ProjectCard entry={entry} />)}
@@ -112,7 +107,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 		intro="Short essays, technical notes, and reflections on research software, scholarly interfaces, and trustworthy systems."
 	>
 		<Fragment slot="actions">
-			<a href="/writing/" class="link-underline">View Writing ↗</a>
+			<a href="/writing/" class="link-underline">View Writing &rarr;</a>
 		</Fragment>
 		{
 			posts.length > 0 ? (
@@ -120,7 +115,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 					{posts.map((entry) => <PostCard entry={entry} />)}
 				</div>
 			) : (
-				<div class="reveal border-t border-b border-[var(--border-fine)] py-8 text-[15px] leading-8 text-[var(--text-muted)]">
+				<div class="reveal border-t border-b border-[var(--border-fine)] py-6 text-sm leading-7 text-[var(--text-muted)]">
 					No public essays are posted yet.
 				</div>
 			)
@@ -134,50 +129,50 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 		intro={cvSummary.statement}
 	>
 		<Fragment slot="actions">
-			<a href={siteMeta.cvHref} class="link-underline">Download CV ↗</a>
+			<a href={siteMeta.cvHref} class="link-underline">Download CV &rarr;</a>
 		</Fragment>
-		<div class="grid gap-12 md:grid-cols-12">
+		<div class="grid gap-8 md:grid-cols-12">
 			<div class="reveal md:col-span-4">
-				<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Education</p>
-				<ul class="mt-6 border-t border-[var(--border-fine)]">
+				<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Education</p>
+				<ul class="mt-4 border-t border-[var(--border-fine)]">
 					{
 						cvSummary.education.map((item) => (
-							<li class="border-b border-[var(--border-fine)] py-5">
-								<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">{item.period}</p>
-								<p class="mt-3 font-serif text-2xl leading-tight">{item.title}</p>
-								<p class="mt-3 text-sm leading-7 text-[var(--text-muted)]">{item.meta}</p>
+							<li class="border-b border-[var(--border-fine)] py-3.5">
+								<p class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]">{item.period}</p>
+								<p class="mt-2 font-serif text-[1.2rem] leading-tight">{item.title}</p>
+								<p class="mt-2 text-sm leading-6 text-[var(--text-muted)]">{item.meta}</p>
 							</li>
 						))
 					}
 				</ul>
 			</div>
 			<div class="reveal md:col-span-4">
-				<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Experience</p>
-				<ul class="mt-6 border-t border-[var(--border-fine)]">
+				<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Experience</p>
+				<ul class="mt-4 border-t border-[var(--border-fine)]">
 					{
 						cvSummary.experience.map((item) => (
-							<li class="border-b border-[var(--border-fine)] py-5">
-								<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">{item.period}</p>
-								<p class="mt-3 font-serif text-2xl leading-tight">{item.title}</p>
-								<p class="mt-3 text-sm leading-7 text-[var(--text-muted)]">{item.meta}</p>
+							<li class="border-b border-[var(--border-fine)] py-3.5">
+								<p class="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]">{item.period}</p>
+								<p class="mt-2 font-serif text-[1.2rem] leading-tight">{item.title}</p>
+								<p class="mt-2 text-sm leading-6 text-[var(--text-muted)]">{item.meta}</p>
 							</li>
 						))
 					}
 				</ul>
 			</div>
 			<div class="reveal md:col-span-4">
-				<p class="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">Honors & Recognition</p>
-				<ul class="mt-6 border-t border-[var(--border-fine)]">
+				<p class="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]">Honors & Recognition</p>
+				<ul class="mt-4 border-t border-[var(--border-fine)]">
 					{
 						cvSummary.service.map((item) => (
-							<li class="border-b border-[var(--border-fine)] py-5 text-sm leading-7 text-[var(--text-muted)]">
+							<li class="border-b border-[var(--border-fine)] py-3.5 text-sm leading-6 text-[var(--text-muted)]">
 								{item}
 							</li>
 						))
 					}
 				</ul>
-				<a class="link-underline mt-6 inline-flex font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]" href={siteMeta.cvHref}>
-					Download full PDF ↗
+				<a class="link-underline mt-5 inline-flex font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)]" href={siteMeta.cvHref}>
+					Download full PDF &rarr;
 				</a>
 			</div>
 		</div>

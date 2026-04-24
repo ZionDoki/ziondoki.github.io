@@ -65,7 +65,7 @@
 	h6 {
 		font-family: var(--font-serif);
 		font-weight: 400;
-		letter-spacing: -0.01em;
+		letter-spacing: 0;
 	}
 }
 
@@ -164,17 +164,17 @@
 	}
 
 	.prose-academic {
-		font-size: 1.06rem;
-		line-height: 1.95;
+		font-size: 1rem;
+		line-height: 1.82;
 		color: var(--text-ink);
 	}
 
 	.prose-academic h2,
 	.prose-academic h3 {
-		margin-top: 2.75rem;
-		font-size: clamp(1.9rem, 3vw, 2.4rem);
-		line-height: 1.12;
-		letter-spacing: -0.02em;
+		margin-top: 2.2rem;
+		font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+		line-height: 1.16;
+		letter-spacing: 0;
 	}
 
 	.prose-academic p,

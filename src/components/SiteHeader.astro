@@ -21,15 +21,15 @@ const navItems = [
 	data-site-header
 	class="fixed inset-x-0 top-0 z-40 bg-[color:rgba(249,249,248,0.94)] transition-colors duration-700 ease-[var(--ease-out-expo)]"
 >
-	<div class="mx-auto flex w-full max-w-[980px] items-center justify-between gap-6 border-b border-transparent px-6 py-5 sm:px-8">
+	<div class="mx-auto flex w-full max-w-[1120px] items-center justify-between gap-6 border-b border-transparent px-5 py-4 sm:px-7">
 		<a href="/" class="min-w-0">
-			<p class="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--text-muted)]">
+			<p class="font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--text-muted)]">
 				Research Archive
 			</p>
-			<p class="mt-1.5 font-serif text-[2rem] leading-none text-[var(--text-ink)]">Ziang Liu</p>
+			<p class="mt-1 font-serif text-[1.65rem] leading-none text-[var(--text-ink)]">Ziang Liu</p>
 		</a>
 
-		<nav class="hidden items-center gap-6 font-mono text-[11px] uppercase tracking-[0.22em] md:flex" aria-label="Primary">
+		<nav class="hidden items-center gap-5 font-mono text-[11px] uppercase tracking-[0.2em] md:flex" aria-label="Primary">
 			{
 				navItems.map((item) => (
 					<a
@@ -47,7 +47,7 @@ const navItems = [
 			}
 		</nav>
 
-		<div class="flex items-center gap-5 font-mono text-[11px] uppercase tracking-[0.22em]">
+		<div class="flex items-center gap-5 font-mono text-[11px] uppercase tracking-[0.2em]">
 			<a class="link-underline hidden text-[var(--text-muted)] transition-colors duration-700 hover:text-[var(--text-ink)] md:inline-flex" href="/publications/">
 				Archive
 			</a>
@@ -64,7 +64,7 @@ const navItems = [
 	</div>
 
 	<div id="mobile-menu" hidden data-menu-panel class="border-t border-[var(--border-fine)] md:hidden">
-		<div class="mx-auto flex w-full max-w-[980px] flex-col gap-4 px-6 py-5 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)] sm:px-8">
+		<div class="mx-auto flex w-full max-w-[1120px] flex-col gap-4 px-5 py-5 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] sm:px-7">
 			{
 				navItems.map((item) => (
 					<a
